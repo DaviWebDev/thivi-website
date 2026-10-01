@@ -1,0 +1,7 @@
+services:
+  thivi-website:
+    build:
+      context: .
+      target: prod
+    ports:
+      - "4322:80"

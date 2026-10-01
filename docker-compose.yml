@@ -1,0 +1,10 @@
+services:
+  thivi-website:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "4321:4321"
+    volumes:
+      - .:/app
+      - /app/node_modules

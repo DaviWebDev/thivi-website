@@ -1,0 +1,29 @@
+{
+  "name": "thivi-website",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "docker:preview": "docker build --target prod -t thivi-prod . && docker run --rm -d --name thivi-prod -p 4322:80 thivi-prod",
+    "docker:rebuild": "docker build --no-cache --target prod -t thivi-prod . && docker run --rm -d --name thivi-prod -p 4322:80 thivi-prod",
+    "docker:stop-prod": "docker stop thivi-prod"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.5",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^7.0.2"
+  },
+  "allowScripts": {
+    "esbuild": true
+  }
+}
