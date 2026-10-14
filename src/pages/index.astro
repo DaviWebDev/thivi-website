@@ -1,0 +1,200 @@
+---
+/*Astro Components*/
+import { Icon } from "astro-icon/components";
+import { Picture, getImage, Image } from "astro:assets";
+/*Components*/
+import Layout from "../layout/Layout.astro";
+import siteData from "../constants/siteData.json";
+import ButtonLink from "../components/ui/ButtonLink.astro";
+import Card from "../components/ui/Card.astro";
+import Carousel from "../components/ui/Carousel.astro";
+/*Images*/
+import heroBackground from "../assets/images/hero-home-img.png";
+import AboutImage from "../assets/images/about-img.png";
+import videoThumb from "../assets/images/thumb-video.png";
+import testimonialsImage from "../assets/images/testimonials-person.png";
+/*ts*/
+import { heroCards, coursesCards } from "../data/home.ts";
+
+const bgHero = await getImage({ src: heroBackground, widths: [640, 960, 1280], quality: 80, format: "webp" });
+---
+
+<Layout seo={siteData.pages.home} srOnly={false}>
+  <link
+    rel="preload"
+    as="image"
+    imagesrcset={bgHero.srcSet.attribute}
+    imagesizes="100vw"
+    type="image/webp"
+    fetchpriority="high"
+    slot="preload"
+  />
+  <div class="main-shell flex flex-col gap-20">
+    <section class="hero">
+      <div class="hero__bg">
+        <Picture
+          src={heroBackground}
+          formats={["webp"]}
+          quality={80}
+          widths={[640, 960, 1280]}
+          sizes="100vw"
+          alt=""
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          class="size-full object-cover"
+        />
+      </div>
+      <div class="hero__content flex justify-center items-center">
+        <div class="text-center text-shadow-lg text-white max-w-300 flex-1 px-2 xs:text-start xs:px-5">
+          <h1 class="clamp-[text,1.4rem,2.5rem] font-bold mb-5 xs:max-w-130">Cooking is at once child's play and adult joy.</h1>
+          <p class="clamp-[text,0.95rem,1.25rem] xs:max-w-120">
+            Lets make the world More succes, and i am typing random words in order to fill the contents for the Ui Designs and development
+            and it is going preety well.
+          </p>
+        </div>
+      </div>
+      <div class="hero__cards flex justify-center">
+        <div class="hero__cards-content max-w-300 flex-1 m-2">
+          {heroCards.map(({ image, title, txt }) => (
+            <div class="bg-white text-center max-w-70 min-w-70 min-h-87.5 flex flex-col items-center gap-5 px-5 py-15 shadow-xl mb-10">
+              <Icon name={image} class="text-6xl" />
+              <h2 class="text-dark-olive-green text-xl">{title}</h2>
+              <p>{txt}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    <section class="flex justify-center items-center [content-visibility:auto] [contain-intrinsic-size:auto_600px]">
+      <div class="max-w-300 min-h-[min(40svh,40rem)] flex flex-col-reverse items-center gap-10 px-2 md:flex-row">
+        <div class="text-center max-w-120 flex flex-col items-center gap-5 sm:text-start sm:items-start">
+          <h2 class="clamp-[text,1.5rem,2rem] font-semibold relative before:absolute before:bg-lime-green before:h-full before:w-2 before:-inset-s-8 sm:ms-8">
+            About Thivi Edu.
+          </h2>
+          <p>
+            Lets make the world More succes, and i am typing random words in order to fill the contents for the Ui Designs and development.
+            Thivi Edu was established by John Smith in 1920 for the public benefit and it is recognized globally. Throughout our great
+            history, Kingster has offered access to a wide range of academic opportunities. As a world leader in higher education, the
+            University has pioneered change in the sector.
+          </p>
+          <ButtonLink content="Learn More" href="#" />
+        </div>
+        <div class="relative w-full max-w-120 min-w-60 aspect-4/3 after:absolute after:bg-lime-green/37 after:inset-0 after:w-full after:h-full">
+          <Image src={AboutImage} alt="Group of people cooking" layout="constrained" quality={70} class="size-full object-cover" />
+        </div>
+      </div>
+    </section>
+    <section class="relative isolate flex justify-center px-5 [content-visibility:auto] [contain-intrinsic-size:auto_600px]">
+      <div class="absolute inset-0 -z-1 overflow-clip aspect-4/3 after:absolute after:inset-0 after:bg-lime-green/37">
+        <Image src={videoThumb} alt="" class="size-full object-cover" quality={70} />
+      </div>
+      <div class="text-center text-white min-h-[min(50svh,40rem)] flex flex-col gap-5 justify-center items-center">
+        <h2 class="font-bold clamp-[text,1.5rem,1.8rem]">Watch Campus Life Video Tour</h2>
+        <p class="max-w-160 clamp-[text,1rem,1.2rem]">
+          Vmply dummy text of the printing and typesetting industryorem Ipsum industry's standard dum an unknowramble.
+        </p>
+        <Icon name="play-icon" aria-hidden="true" class="text-6xl shadow-xl cursor-pointer" />
+      </div>
+    </section>
+    <section class="w-full min-w-0 flex justify-center [content-visibility:auto] [contain-intrinsic-size:auto_600px]">
+      <div class="max-w-300 min-w-0 flex flex-col gap-10">
+        <div class="max-w-175 flex flex-col gap-10 text-center self-center px-5">
+          <h2 class="relative clamp-[text,1.2rem,1.4rem] font-semibold before:absolute before:bg-lime-green before:h-1 before:w-10 before:-bottom-2 before:left-[50%] before:transform-[translateX(-50%)]">
+            Our Courses
+          </h2>
+          <p>
+            Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a
+            paradisematic country
+          </p>
+        </div>
+        <div class="w-full min-w-0">
+          <Carousel label="Our Courses">
+            {coursesCards.map((course) => (
+              <Card cardData={course} className="carousel__card w-full" />
+            ))}
+          </Carousel>
+        </div>
+      </div>
+    </section>
+    <section class="bg-lime-green/15 flex justify-center py-25 [content-visibility:auto] [contain-intrinsic-size:auto_600px]">
+      <div class="max-w-300 min-h-[min(50svh,40rem)] flex flex-col justify-center items-center gap-20 px-5">
+        <h2 class="relative clamp-[text,1.2rem,1.4rem] font-semibold before:absolute before:bg-lime-green before:h-1 before:w-10 before:-bottom-2 before:left-[50%] before:transform-[translateX(-50%)]">
+          Testimonials
+        </h2>
+        <div class="flex flex-col justify-center items-center gap-20 lg:flex-row">
+          <div class="relative isolate w-full max-w-80 aspect-4/3 before:absolute before:bg-lime-green before:w-20 before:-top-6 before:-bottom-6 before:left-[50%] before:transform-[translateX(-50%)] before:-z-1 lg:before:w-30 lg:before:-top-12 lg:before:-bottom-12">
+            <Image src={testimonialsImage} alt="Chandramouli" layout="constrained" quality={70} class="size-full object-cover" />
+          </div>
+          <div class="flex flex-col gap-5">
+            <Icon name="quotes-icon" class="text-6xl" />
+            <p class="max-w-120">
+              We have been recruiting from the Culinary Arts for the past 4 years and I must say it has been a real pleasure to have the
+              students on board. They are well trained, well behaved and mannered. Most of the chefs recruited have reached good positions
+              in a short time, this is because of the strong basics that has been imparted from the Faculties of the Culinary Arts. I am
+              sure this will be long time journey.
+            </p>
+            <div class="flex flex-col gap-2">
+              <h3 class="text-xl font-semibold text-dark-olive-green">Chandramouli</h3>
+              <p class="text-gray/60">Executive Sous Chef, Fairmont Bab Al Bahr, Abu Dhabi</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .hero {
+    --overlap: 0px;
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero__content {
+    min-height: min(50svh, 40rem);
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0 0 var(--overlap) 0;
+    z-index: -1;
+    overflow: clip;
+  }
+
+  .hero__bg::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background-image:
+      linear-gradient(to top, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(to top, rgb(20, 82, 29, 1) 0%, rgb(20, 82, 29, 0.7) 70%, rgb(20, 82, 29, 0.1) 100%);
+  }
+
+  .hero__cards-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    grid-template-rows: auto;
+    grid-auto-rows: 0;
+    justify-items: center;
+    column-gap: 3rem;
+    row-gap: 0;
+    overflow: hidden;
+  }
+
+  @media (width >= 64rem) {
+    .hero {
+      --overlap: 11rem;
+    }
+
+    .hero__bg::before {
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%),
+        linear-gradient(to right, rgb(20, 82, 29, 1) 0%, rgb(20, 82, 29, 0.7) 70%, rgb(20, 82, 29, 0.4) 100%);
+    }
+  }
+</style>

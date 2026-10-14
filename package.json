@@ -12,16 +12,31 @@
     "astro": "astro",
     "docker:preview": "docker build --target prod -t thivi-prod . && docker run --rm -d --name thivi-prod -p 4322:80 thivi-prod",
     "docker:rebuild": "docker build --no-cache --target prod -t thivi-prod . && docker run --rm -d --name thivi-prod -p 4322:80 thivi-prod",
-    "docker:stop-prod": "docker stop thivi-prod"
+    "docker:stop-prod": "docker stop thivi-prod",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\""
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.3.5",
+    "astro": "^7.3.8",
+    "astro-icon": "^1.2.0",
+    "astro-seo": "^1.2.0",
+    "sharp": "^0.35.5",
+    "tailwind-clamp": "^4.5.1",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
-    "typescript": "^7.0.2"
+    "@eslint/js": "^10.0.1",
+    "@typescript/native": "npm:typescript@^7",
+    "eslint": "^10.12.0",
+    "eslint-plugin-astro": "^3.2.1",
+    "globals": "^17.13.0",
+    "prettier": "3.9.9",
+    "prettier-plugin-astro": "1.1.0",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript-eslint": "^8.71.0"
   },
   "allowScripts": {
     "esbuild": true

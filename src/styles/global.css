@@ -1,8 +1,14 @@
 @import "tailwindcss";
+@plugin "tailwind-clamp";
 
 @theme {
   --font-poppins: var(--poppins);
   --font-averta: var(--averta-demo-pe);
+  --color-lime-green: #73ab3a;
+  --color-gray: #585858;
+  --color-dark-olive-green: #537413;
+  --color-dark-green: #1e3408;
+  --breakpoint-xs: 26.5625rem;
 }
 
 @layer base {
@@ -11,6 +17,8 @@
   }
 
   body {
+    font-family: var(--font-poppins);
+    color: var(--color-gray);
     min-height: 100vh;
     min-height: 100dvh;
   }

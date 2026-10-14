@@ -1,0 +1,143 @@
+---
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<section class="carousel" data-carousel aria-roledescription="carousel" aria-label={label}>
+  <div class="carousel__row">
+    <button type="button" class="carousel__btn" data-carousel-prev aria-label="Previous slide">
+      ‹
+    </button>
+    <div class="carousel__track" data-carousel-track tabindex="0">
+      <slot />
+    </div>
+    <button type="button" class="carousel__btn" data-carousel-next aria-label="Next slide">
+      ›
+    </button>
+  </div>
+  <div class="carousel__dots" data-carousel-dots role="group" aria-label="Carousel pages" hidden></div>
+</section>
+
+<style>
+  .carousel {
+    --card-w: min(74vw, 18rem);
+    --card-gap: 3rem;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .carousel__row {
+    position: relative;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .carousel__track {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    min-width: 0;
+    gap: var(--card-gap);
+    padding-inline: 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+
+  .carousel__track > :global(.carousel__card) {
+    flex: 0 0 var(--card-w);
+    scroll-snap-align: center;
+  }
+
+  .carousel__btn {
+    font-size: 4rem;
+    color: var(--color-lime-green);
+  }
+
+  .carousel__btn:disabled {
+    opacity: 0.1;
+    cursor: not-allowed;
+  }
+
+  .carousel__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+  }
+
+  .carousel__dots[hidden] {
+    display: none;
+  }
+
+  .carousel__dots :global(.carousel__dot) {
+    appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    box-sizing: border-box;
+    width: 0.5rem;
+    min-width: 0.5rem;
+    height: 0.5rem;
+    min-height: 0.5rem;
+    flex: 0 0 0.5rem;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 999px;
+    background: var(--color-lime-green);
+    opacity: 0.35;
+    cursor: pointer;
+    transition:
+      width 180ms ease,
+      flex-basis 180ms ease,
+      opacity 180ms ease;
+  }
+
+  .carousel__dots :global(.carousel__dot[aria-current="true"]) {
+    width: 1.5rem;
+    min-width: 1.5rem;
+    flex-basis: 1.5rem;
+    opacity: 1;
+  }
+
+  .carousel__dots .carousel__dot:focus-visible {
+    outline: 2px solid var(--color-lime-green);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel__dots .carousel__dot {
+      transition: none;
+    }
+
+    .carousel__track {
+      scroll-behavior: auto;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .carousel__track > :global(.carousel__card) {
+      flex-basis: calc((100% - 2 * var(--card-gap)) / 3);
+      scroll-snap-align: start;
+    }
+  }
+
+  @media (width >= 80rem) {
+    .carousel__row {
+      gap: 3rem;
+    }
+  }
+</style>
+
+<script src="../../scripts/carousel.ts"></script>
