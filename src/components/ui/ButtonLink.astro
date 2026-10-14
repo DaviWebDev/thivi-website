@@ -1,0 +1,36 @@
+---
+interface Props {
+  content: string;
+  href: string;
+  width?: string;
+  height?: string;
+}
+
+const { content, href = "/", width = "clamp(8rem, 5vw, 12rem)", height = "2.5rem" } = Astro.props;
+---
+
+<a href={href} style={`width: ${width}; height: ${height};`}>
+  {content}
+</a>
+
+<style>
+  a {
+    background-color: var(--color-lime-green);
+    font-weight: 600;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
+
+  a:hover {
+    transform: scale(1.1);
+  }
+
+  a:active {
+    transform: scale(1.05);
+  }
+</style>

@@ -1,0 +1,12 @@
+{
+  "default": {
+    "title": "Thivi",
+    "description": "Welcome to Thivi! Discover our story, explore our programs, and join our community."
+  },
+  "pages": {
+    "home": {
+      "title": "Thivi",
+      "description": "Discover our story and join our community."
+    }
+  }
+}

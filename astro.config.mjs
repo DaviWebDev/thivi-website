@@ -1,7 +1,27 @@
 import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
+import icon from "astro-icon";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
+  build: {
+    inlineStylesheets: "always",
+  },
+  security: {
+    csp: {
+      directives: [
+        "default-src 'self'",
+        "base-uri 'self'",
+        "object-src 'none'",
+        "form-action 'self'",
+        "img-src 'self' data:",
+        "font-src 'self' data:",
+      ],
+      styleDirective: {
+        resources: [{ resource: "'unsafe-inline'", kind: "attribute" }],
+      },
+    },
+  },
   server: {
     host: true,
   },
@@ -13,26 +33,18 @@ export default defineConfig({
       },
     },
   },
+
   fonts: [
     {
       provider: fontProviders.local(),
       name: "Poppins",
       cssVariable: "--poppins",
+      fallbacks: ["Arial", "Roboto"],
       options: {
         variants: [
           {
-            src: ["./src/assets/fonts/Poppins-400.woff2"],
-            weight: 400,
-            style: "normal",
-          },
-          {
-            src: ["./src/assets/fonts/Poppins-600.woff2"],
-            weight: 600,
-            style: "normal",
-          },
-          {
-            src: ["./src/assets/fonts/Poppins-700.woff2"],
-            weight: 700,
+            src: ["./src/assets/fonts/Poppin-VF.woff2"],
+            weight: "400 800",
             style: "normal",
           },
         ],
@@ -42,6 +54,7 @@ export default defineConfig({
       provider: fontProviders.local(),
       name: "AvertaDemoPE",
       cssVariable: "--averta-demo-pe",
+      fallbacks: ["Arial", "sans-serif"],
       options: {
         variants: [
           {
@@ -53,4 +66,6 @@ export default defineConfig({
       },
     },
   ],
+  site: process.env.SITE_URL || "http://localhost:4321",
+  integrations: [icon(), sitemap()],
 });

@@ -1,0 +1,261 @@
+---
+import { Icon } from "astro-icon/components";
+
+const navItems = [
+  { option: "HOME", href: "/" },
+  { option: "ABOUT", href: "/about" },
+  { option: "PROGRAMS", href: "/programs" },
+  { option: "AFFILIATIONS", href: "/affiliations" },
+  { option: "NEWS", href: "/news" },
+  { option: "CONTACT", href: "/contact" },
+];
+---
+
+<header class="header">
+  <div class="header__inner">
+    <div class="h-full flex items-center justify-between px-5 border-b border-white">
+      <a href="/" aria-label="Logo Thivi from header" class="logo-header">
+        <Icon name="logo/logo-header" />
+      </a>
+      <div class="hamburger-menu">
+        <button
+          data-js="toggle-menu"
+          aria-expanded="false"
+          aria-label="Open menu navigation"
+          aria-controls="primary-navigation"
+          class="hamburger-btn"
+        >
+          <span class="hamburger-menu__bar"></span>
+        </button>
+      </div>
+    </div>
+    <nav data-js="navigation-menu" class="nav-menu" id="primary-navigation" aria-label="Navigations options">
+      <ul>
+        {navItems.map(({ option, href }) => (
+          <li>
+            <a href={href} class="nav-menu__option">
+              {option}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="overlay" data-js="overlay-header"></div>
+
+<style>
+  :global(body.no-scroll) {
+    overflow: hidden;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    width: 100%;
+    height: 3.75rem;
+    z-index: 101;
+  }
+
+  .header__inner {
+    max-width: 75rem;
+    height: 100%;
+  }
+
+  .logo-header {
+    font-size: 2rem;
+  }
+
+  .header:has(.nav-menu--open) div {
+    border-bottom-color: var(--color-lime-green);
+  }
+
+  .hamburger-menu {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .hamburger-menu__bar,
+  .hamburger-menu__bar::before,
+  .hamburger-menu__bar::after {
+    display: block;
+    width: 1.2rem;
+    height: 0.2rem;
+    background-color: var(--color-lime-green);
+    border-radius: 1rem;
+    transition:
+      background-color 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .hamburger-menu__bar {
+    position: relative;
+  }
+
+  .hamburger-menu__bar::before,
+  .hamburger-menu__bar::after {
+    content: "";
+    position: absolute;
+  }
+
+  .hamburger-menu__bar::before {
+    top: -7px;
+  }
+
+  .hamburger-menu__bar::after {
+    top: 7px;
+  }
+
+  .header:has(.nav-menu--open) .hamburger-menu__bar {
+    background-color: transparent;
+  }
+
+  .header:has(.nav-menu--open) .hamburger-menu__bar::before {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .header:has(.nav-menu--open) .hamburger-menu__bar::after {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    font-family: var(--font-averta);
+    background-color: white;
+    max-height: 0;
+    transform: translateY(-5px);
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.25s ease,
+      transform 0.3s ease;
+  }
+
+  .nav-menu ul li {
+    height: 3rem;
+    border-bottom: 1px solid var(--color-lime-green);
+  }
+
+  .nav-menu__option {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-inline-end: 1rem;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .nav-menu__option:hover {
+    background-color: var(--color-lime-green);
+    color: white;
+  }
+
+  .nav-menu.nav-menu--open {
+    max-height: 300px;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    z-index: 100;
+  }
+
+  .overlay.isVisible {
+    background-color: rgba(0, 0, 0, 0.05);
+    display: block;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  @media (width >= 48rem) {
+    .header {
+      display: flex;
+      justify-content: center;
+      height: 5rem;
+    }
+
+    .header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .hamburger-menu {
+      display: none;
+    }
+
+    .nav-menu {
+      position: static;
+      background-color: transparent;
+      max-height: none;
+      padding-inline-end: 0.5rem;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .nav-menu ul {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-menu ul li {
+      display: flex;
+      align-items: center;
+      border: none;
+    }
+
+    .nav-menu__option {
+      position: relative;
+      height: auto;
+      padding: 0;
+    }
+
+    .nav-menu__option::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-lime-green);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.4s ease;
+    }
+
+    .nav-menu__option:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-menu__option:hover {
+      background-color: initial;
+      color: var(--color-lime-green);
+    }
+  }
+
+  @media (width > 75rem) {
+    .header__inner div {
+      padding: 0;
+    }
+  }
+</style>
+
+<script src="../../scripts/header.ts"></script>
