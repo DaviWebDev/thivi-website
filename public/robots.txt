@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://meu-site.com.br/sitemap-index.xml
+Sitemap: https://thivi-website.vercel.app/sitemap-index.xml
