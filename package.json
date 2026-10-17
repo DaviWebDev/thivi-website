@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.22.1"
   },
   "scripts": {
     "dev": "astro dev",
@@ -14,7 +14,10 @@
     "docker:rebuild": "docker build --no-cache --target prod -t thivi-prod . && docker run --rm -d --name thivi-prod -p 4322:80 thivi-prod",
     "docker:stop-prod": "docker stop thivi-prod",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\""
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\"",
+    "lint": "eslint \"**/*.{ts,astro}\"",
+    "check": "astro check",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
@@ -33,10 +36,19 @@
     "eslint": "^10.12.0",
     "eslint-plugin-astro": "^3.2.1",
     "globals": "^17.13.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
     "prettier": "3.9.9",
     "prettier-plugin-astro": "1.1.0",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.71.0"
+  },
+  "lint-staged": {
+    "**/*.{ts,astro}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{js,jsx,tsx,md,mdx,css,json}": "prettier --write"
   },
   "allowScripts": {
     "esbuild": true
