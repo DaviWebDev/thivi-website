@@ -1,14 +1,24 @@
 ---
+/*Astro Components*/
 import { Icon } from "astro-icon/components";
 
 const navItems = [
-  { option: "HOME", href: "/" },
-  { option: "ABOUT", href: "/about" },
-  { option: "PROGRAMS", href: "/programs" },
-  { option: "AFFILIATIONS", href: "/affiliations" },
-  { option: "NEWS", href: "/news" },
-  { option: "CONTACT", href: "/contact" },
+  { label: "HOME", href: "/" },
+  { label: "ABOUT", href: "/about" },
+  { label: "PROGRAMS", href: "/programs" },
+  { label: "AFFILIATIONS", href: "/affiliations" },
+  { label: "NEWS", href: "/news" },
+  { label: "CONTACT", href: "/contact" },
 ];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCurrentPage = (href: string) => {
+  const linkPath = href.replace(/\/$/, "") || "/";
+  return (
+    currentPath === linkPath ||
+    (linkPath !== "/" && currentPath.startsWith(linkPath + "/"))
+  );
+};
 ---
 
 <header class="header">
@@ -29,12 +39,21 @@ const navItems = [
         </button>
       </div>
     </div>
-    <nav data-js="navigation-menu" class="nav-menu" id="primary-navigation" aria-label="Navigations options">
+    <nav
+      data-js="navigation-menu"
+      class="nav-menu"
+      id="primary-navigation"
+      aria-label="Navigations options"
+    >
       <ul>
-        {navItems.map(({ option, href }) => (
+        {navItems.map(({ label, href }) => (
           <li>
-            <a href={href} class="nav-menu__option">
-              {option}
+            <a
+              href={href}
+              aria-current={isCurrentPage(href) ? "page" : undefined}
+              class="nav-menu__option aria-[current=page]:text-lime-green"
+            >
+              {label}
             </a>
           </li>
         ))}
@@ -56,6 +75,7 @@ const navItems = [
     width: 100%;
     height: 3.75rem;
     z-index: 101;
+    box-shadow: 0 2px 8px -2px rgb(0 0 0 / 5%);
   }
 
   .header__inner {

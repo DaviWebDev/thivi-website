@@ -2,25 +2,38 @@
 interface Props {
   content: string;
   href: string;
+  ariaLabel?: string;
   width?: string;
   height?: string;
+  background?: string;
+  color?: string;
 }
 
-const { content, href = "/", width = "clamp(8rem, 5vw, 12rem)", height = "2.5rem" } = Astro.props;
+const {
+  content,
+  href = "/",
+  width = "clamp-[w,8rem,12rem]",
+  height = "h-10",
+  background = "bg-lime-green",
+  color = "text-white",
+  ariaLabel = "",
+} = Astro.props;
 ---
 
-<a href={href} style={`width: ${width}; height: ${height};`}>
+<a
+  href={href}
+  class=`${width} ${height} ${color} ${background} `
+  aria-label={ariaLabel}
+>
   {content}
 </a>
 
 <style>
   a {
-    background-color: var(--color-lime-green);
-    font-weight: 600;
-    color: white;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    font-weight: 600;
     cursor: pointer;
     transform: scale(1);
     transition: transform 0.3s ease;

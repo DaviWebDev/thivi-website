@@ -1,0 +1,32 @@
+---
+/*Astro Components*/
+import { Image } from "astro:assets";
+/*Components*/
+import Layout from "../layout/Layout.astro";
+import ButtonLink from "../components/ui/ButtonLink.astro";
+/*Images*/
+import errorImage from "../assets/images/error404.svg";
+/*Json*/
+import siteMetaData from "../constants/siteMetaData.json";
+---
+
+<Layout
+  seo={siteMetaData.errors[404]}
+  class="flex justify-center items-center my-20"
+>
+  <section class="flex flex-col items-center gap-10">
+    <div>
+      <Image
+        src={errorImage}
+        alt=""
+        priority
+        layout="constrained"
+        class="text-blue-600"
+      />
+    </div>
+    <h1 class="clamp-[text,1.2rem,2.2rem] font-semibold">
+      Ops! Page not found.
+    </h1>
+    <ButtonLink content="Back to Home" href="/" ariaLabel="Back to a home" />
+  </section>
+</Layout>

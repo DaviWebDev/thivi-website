@@ -31,7 +31,7 @@ export const coursesCards = [
     title: "Cert IV in Leadership & Management",
     description:
       "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country ...",
-    btn: { value: "Read More", href: "#" },
+    btn: { value: "Read More", href: "/cert-iv-in-leadership-&-management" },
   },
   {
     image: { src: cardImg2, alt: "Work setup" },
@@ -40,7 +40,7 @@ export const coursesCards = [
       "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country ...",
     btn: {
       value: "Read More",
-      href: "#",
+      href: "/Cert-iv-in-digital-marketing-and-communication",
     },
   },
   {
@@ -51,6 +51,6 @@ export const coursesCards = [
     title: "Cert IV Hospitality",
     description:
       "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country ...",
-    btn: { value: "Read More", href: "#" },
+    btn: { value: "Read More", href: "/cert-iv=hospitality" },
   },
 ];
