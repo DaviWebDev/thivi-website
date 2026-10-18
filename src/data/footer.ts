@@ -2,17 +2,17 @@ export const footerLinks = [
   {
     title: "Community",
     links: [
-      { label: "Featured artists", href: "#" },
-      { label: "The Portal", href: "#" },
-      { label: "Live events", href: "#" },
+      { label: "Featured artists", href: "/featured-artists" },
+      { label: "The Portal", href: "/the-portal" },
+      { label: "Live events", href: "/live-events" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "About us", href: "#" },
-      { label: "Contact us", href: "#" },
-      { label: "History", href: "#" },
+      { label: "About us", href: "/about" },
+      { label: "Contact us", href: "/contact" },
+      { label: "History", href: "/history" },
     ],
   },
 ] as const;
@@ -22,10 +22,10 @@ export const footerInfo = [
     title: "Follow us",
     type: "social",
     socialMedia: [
-      { name: "Twitter", icon: "social/twitter", href: "#" },
-      { name: "Facebook", icon: "social/facebook", href: "#" },
-      { name: "Instagram", icon: "social/instagram", href: "#" },
-      { name: "LinkedIn", icon: "social/linkedin", href: "#" },
+      { name: "Twitter", icon: "social/twitter", href: "/twitter" },
+      { name: "Facebook", icon: "social/facebook", href: "/facebook" },
+      { name: "Instagram", icon: "social/instagram", href: "/instagram" },
+      { name: "LinkedIn", icon: "social/linkedin", href: "/linkedin" },
     ],
   },
   {

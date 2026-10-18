@@ -12,5 +12,11 @@
       "title": "About",
       "description": "Thivi Edu is a culinary and hospitality school with hands-on training, small classes and partnerships with restaurants and hotels."
     }
+  },
+  "errors": {
+    "404": {
+      "title": "Page not found",
+      "description": "The page you're looking for couldn't be found. Explore Thivi Edu's culinary and hospitality programs, or return to our homepage."
+    }
   }
 }
