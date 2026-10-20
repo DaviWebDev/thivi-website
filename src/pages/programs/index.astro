@@ -1,0 +1,58 @@
+---
+/*Astro Components*/
+import { Image } from "astro:assets";
+/*Components*/
+import Layout from "../../layout/Layout.astro";
+/*data*/
+import siteMetaData from "../../constants/siteMetaData.json";
+import { coursesData } from "../../data/courses.ts";
+import ButtonLink from "../../components/ui/ButtonLink.astro";
+---
+
+<Layout
+  seo={siteMetaData.pages.programs}
+  srOnly={false}
+  class="flex justify-center"
+>
+  <section class="flex flex-col gap-10 max-w-300 my-15 px-5">
+    <h1 class="relative clamp-[text,1.2rem,2.2rem] font-semibold before:absolute before:bottom-0 before:clamp-[w,3.5rem,6.5rem] before:h-1 before:bg-lime-green">
+      Programs at Thivi
+    </h1>
+    <ul class="flex flex-col gap-10 lg:gap-0">
+      {coursesData.map(
+        ({ slug, title, description, image, imageAlt }, index) => (
+          <li>
+            <article
+              class:list={[
+                "flex flex-col items-center gap-10 md:flex-row lg:gap-0",
+                index % 2 !== 0 && "md:flex-row-reverse",
+              ]}
+            >
+              <div class="relative after:absolute after:inset-0 after:bg-lime-green/52 md:flex-1">
+                <Image
+                  src={image}
+                  alt={imageAlt}
+                  priority={index === 0}
+                  quality={index === 0 ? 80 : 70}
+                />
+              </div>
+              <div class="md:flex-1">
+                <div class="flex flex-col gap-5 lg:px-15">
+                  <h2 class="text-2xl font-semibold text-dark-olive-green">
+                    {title}
+                  </h2>
+                  <p>{description}</p>
+                  <ButtonLink
+                    content="Learn More"
+                    href={`/programs/${slug}`}
+                    ariaLabel={title}
+                  />
+                </div>
+              </div>
+            </article>
+          </li>
+        ),
+      )}
+    </ul>
+  </section>
+</Layout>
