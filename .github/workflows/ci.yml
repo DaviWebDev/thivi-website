@@ -31,7 +31,7 @@ jobs:
         run: pnpm lint
 
       - name: Check Astro
-        run: pnpm check
+        run: pnpm astro check
 
       - name: Build
         run: pnpm build
