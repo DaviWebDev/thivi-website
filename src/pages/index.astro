@@ -141,8 +141,16 @@ const bgHero = await getImage({
         </div>
         <div class="w-full min-w-0">
           <Carousel label="Our Courses">
-            {coursesCards.map((course) => (
-              <Card cardData={course} className="carousel__card w-full" />
+            {coursesCards.map(({ slug, title, excerpt, image, imageAlt }) => (
+              <Card
+                className="carousel__card w-full"
+                slug={slug}
+                title={title}
+                excerpt={excerpt}
+                image={image}
+                imageAlt={imageAlt}
+                btnContent="Read More"
+              />
             ))}
           </Carousel>
         </div>

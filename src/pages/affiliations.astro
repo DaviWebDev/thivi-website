@@ -9,14 +9,17 @@ import { affiliationsData } from "../data/affiliations.ts";
 ---
 
 <Layout seo={SiteMetaData.pages.affiliations} class="flex justify-center">
-  <section class="flex flex-col gap-10 max-w-300 px-5 my-15">
-    <h1 class="relative clamp-[text,1.4rem,2.25rem] font-semibold before:absolute before:bottom-0 before:clamp-[w,3.5rem,6.5rem] before:h-1 before:bg-lime-green">
+  <section
+    class="flex flex-col gap-10 max-w-300 px-5 my-15"
+    aria-labelledby="affiliations-title"
+  >
+    <h1
+      id="affiliations-title"
+      class="relative clamp-[text,1.4rem,2.25rem] font-semibold before:absolute before:bottom-0 before:clamp-[w,3.5rem,6.5rem] before:h-1 before:bg-lime-green"
+    >
       Affiliations
     </h1>
-    <ul
-      aria-label="Affiliations thivi"
-      class="flex flex-col gap-10 lg:flex-row"
-    >
+    <ul class="flex flex-col gap-10 lg:flex-row">
       {affiliationsData.map(({ title, info }) => (
         <li>
           <article class="flex flex-col items-center gap-5 max-w-90 p-8 text-center bg-lime-50 border border-lime-green">

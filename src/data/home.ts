@@ -1,6 +1,15 @@
+import type { ImageMetadata } from "astro";
 import cardImg1 from "../assets/images/card-img-1.png";
 import cardImg2 from "../assets/images/card-img-2.png";
 import cardImg3 from "../assets/images/card-img-3.png";
+
+interface CourseCard {
+  slug: string;
+  title: string;
+  excerpt: string;
+  image: ImageMetadata;
+  imageAlt: string;
+}
 
 export const heroCards = [
   {
@@ -25,32 +34,29 @@ export const heroCards = [
   },
 ];
 
-export const coursesCards = [
+export const coursesCards: CourseCard[] = [
   {
-    image: { src: cardImg1, alt: "Woman holding a mug" },
+    slug: "/cert-iv-in-leadership-&-management",
     title: "Cert IV in Leadership & Management",
-    description:
+    excerpt:
       "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country ...",
-    btn: { value: "Read More", href: "/cert-iv-in-leadership-&-management" },
+    image: cardImg1,
+    imageAlt: "Woman holding a mug",
   },
   {
-    image: { src: cardImg2, alt: "Work setup" },
+    slug: "/Cert-iv-in-digital-marketing-and-communication",
     title: "Cert IV in Digital Marketing and Communication",
-    description:
+    excerpt:
       "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country ...",
-    btn: {
-      value: "Read More",
-      href: "/Cert-iv-in-digital-marketing-and-communication",
-    },
+    image: cardImg2,
+    imageAlt: "Work setup",
   },
   {
-    image: {
-      src: cardImg3,
-      alt: "Waiter organizing the table",
-    },
+    slug: "/cert-iv=hospitality",
     title: "Cert IV Hospitality",
-    description:
+    excerpt:
       "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country ...",
-    btn: { value: "Read More", href: "/cert-iv=hospitality" },
+    image: cardImg3,
+    imageAlt: "Waiter organizing the table",
   },
 ];

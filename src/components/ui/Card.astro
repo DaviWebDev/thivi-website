@@ -3,45 +3,61 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import ButtonLink from "./ButtonLink.astro";
 
-interface CardData {
-  image: {
-    src: ImageMetadata;
-    alt: string;
-  };
-  title: string;
-  description: string;
-  btn: {
-    value: string;
-    href: string;
-  };
-}
-
 interface Props {
-  cardData: CardData;
-  className: string;
+  className?: string;
+  btnContent: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  date?: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  // Props do <Image />
+  width?: number;
+  height?: number;
+  quality?: number;
+  priority?: boolean;
+  format?: "avif" | "webp" | "jpg" | "png";
+  sizes?: string;
+  layout?: "full-width" | "constrained";
+  fit?: "cover" | "contain" | "fill" | "none";
 }
 
-const { cardData, className } = Astro.props;
-const { image, title, description, btn } = cardData;
+const {
+  className = "max-w-80",
+  btnContent,
+  slug,
+  title,
+  excerpt,
+  image,
+  imageAlt = "",
+  ...imageProps
+} = Astro.props;
 ---
 
 <article class={className}>
-  <div class="aspect-4/3 overflow-hidden">
-    <Image src={image.src} alt={image.alt} layout="constrained" class="size-full object-cover" quality={70} />
+  <div>
+    <Image
+      src={image}
+      alt={imageAlt}
+      class="aspect-3/2 size-full object-cover"
+      {...imageProps}
+    />
   </div>
   <div class="min-h-50 flex flex-col gap-3">
-    <h2 class="text-dark-olive-green clamp-[text,1.1rem,1.4rem] font-semibold">{title}</h2>
-    <p class="line-clamp-4">{description}</p>
+    <h2 class="text-dark-olive-green clamp-[text,1.1rem,1.4rem] font-semibold">
+      {title}
+    </h2>
+    <p class="line-clamp-4">{excerpt}</p>
   </div>
-  <div class="">
-    <ButtonLink content={btn.value} href={btn.href} />
+  <div>
+    <ButtonLink content={btnContent} href={slug} />
   </div>
 </article>
 
 <style>
   article {
     width: 100%;
-    max-width: 20rem;
     min-width: 0;
     display: flex;
     flex-direction: column;

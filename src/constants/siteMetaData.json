@@ -19,6 +19,10 @@
     "affiliations": {
       "title": "Affiliations",
       "description": "Explore the affiliations page of Thivi Edu, a culinary and hospitality education concept created as a web design portfolio project."
+    },
+    "news": {
+      "title": "News",
+      "description": "Stay up to date with the latest news from Thivi Edu, including student opportunities, program updates, and industry partnerships."
     }
   },
   "errors": {

@@ -1,0 +1,51 @@
+---
+/*Components*/
+import Layout from "../../layout/Layout.astro";
+import Card from "../../components/ui/Card.astro";
+/*Data*/
+import siteMetaData from "../../constants/siteMetaData.json";
+import { news } from "../../data/news.ts";
+
+const latestNews = [...news].sort((a, b) => b.date.localeCompare(a.date));
+---
+
+<Layout seo={siteMetaData.pages.news} class="flex justify-center">
+  <section
+    aria-labelledby="news-title"
+    class="flex flex-col w-full gap-10 max-w-300 px-5 my-10"
+  >
+    <h1
+      id="news-title"
+      class="relative clamp-[text,1.4rem,2.25rem] font-semibold before:absolute before:bottom-0 before:clamp-[w,3.5rem,6.5rem] before:h-1 before:bg-lime-green"
+    >
+      News
+    </h1>
+    <div>
+      <ul class="grid-layout">
+        {latestNews.map(({ slug, title, excerpt, image, imageAlt }, index) => (
+          <li>
+            <Card
+              className="max-w-120"
+              slug={slug}
+              title={title}
+              excerpt={excerpt}
+              image={image}
+              imageAlt={imageAlt}
+              quality={index === 0 ? 80 : 70}
+              priority={index === 0}
+              btnContent="Read More"
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+</style>
