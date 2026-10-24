@@ -8,11 +8,10 @@ import siteMetaData from "../constants/siteMetaData.json";
 
 interface Props {
   seo: typeof siteMetaData.default;
-  srOnly?: boolean;
   class?: string;
 }
 
-const { seo, srOnly = true, class: mainClass } = Astro.props;
+const { seo, class: mainClass } = Astro.props;
 ---
 
 <html lang="en">
@@ -59,7 +58,6 @@ const { seo, srOnly = true, class: mainClass } = Astro.props;
     <Font cssVariable="--averta-demo-pe" preload />
   </head>
   <body>
-    {srOnly ? <h1 class="sr-only">{seo.title}</h1> : null}
     <div class="relative bg-lime-green flex justify-center text-white w-full h-12 z-101">
       <div class="max-w-300 h-full flex justify-center items-center flex-1 md:justify-end md:pe-2">
         <address class="font-averta not-italic flex gap-3 text-end">

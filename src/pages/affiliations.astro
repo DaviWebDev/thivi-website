@@ -1,0 +1,61 @@
+---
+/*Astro Components*/
+import { Icon } from "astro-icon/components";
+/*Components*/
+import Layout from "../layout/Layout.astro";
+/*Data*/
+import SiteMetaData from "../constants/siteMetaData.json";
+import { affiliationsData } from "../data/affiliations.ts";
+---
+
+<Layout seo={SiteMetaData.pages.affiliations} class="flex justify-center">
+  <section class="flex flex-col gap-10 max-w-300 px-5 my-15">
+    <h1 class="relative clamp-[text,1.4rem,2.25rem] font-semibold before:absolute before:bottom-0 before:clamp-[w,3.5rem,6.5rem] before:h-1 before:bg-lime-green">
+      Affiliations
+    </h1>
+    <ul
+      aria-label="Affiliations thivi"
+      class="flex flex-col gap-10 lg:flex-row"
+    >
+      {affiliationsData.map(({ title, info }) => (
+        <li>
+          <article class="flex flex-col items-center gap-5 max-w-90 p-8 text-center bg-lime-50 border border-lime-green">
+            <h2 class="text-dark-olive-green clamp-[text,1.2rem,1.6rem] font-bold">
+              {title}
+            </h2>
+            <div class="info">
+              <Icon name={info.location.icon} aria-hidden="true" />
+              <span>{info.location.label}</span>
+            </div>
+            <div class="info">
+              <Icon name={info.email.icon} aria-hidden="true" />
+              <a href={info.email.href}>{info.email.label}</a>
+            </div>
+            <div class="info">
+              <Icon name={info.phone.icon} aria-hidden="true" />
+              <a href={info.phone.href}>{info.phone.label}</a>
+            </div>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Layout>
+
+<style>
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .info :global(svg) {
+    font-size: 1.5rem;
+    color: var(--color-lime-green);
+  }
+
+  .info a,
+  .info span {
+    opacity: 0.6;
+  }
+</style>

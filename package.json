@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.22.1"
+    "node": ">=24.21.0"
   },
   "packageManager": "pnpm@12.6.0",
   "scripts": {
@@ -11,6 +11,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "docker:no-cache": "docker compose build --pull --no-cache thivi-website",
     "docker:preview": "docker build --target prod -t thivi-prod . && docker run --rm -d --name thivi-prod -p 4322:80 thivi-prod",
     "docker:rebuild": "docker build --no-cache --target prod -t thivi-prod . && docker run --rm -d --name thivi-prod -p 4322:80 thivi-prod",
     "docker:stop-prod": "docker stop thivi-prod",

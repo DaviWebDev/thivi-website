@@ -15,6 +15,10 @@
     "programs": {
       "title": "Programs",
       "description": "Explore Thivi Edu’s practical programs in leadership and management, digital marketing, and hospitality. Build industry-ready skills through hands-on learning."
+    },
+    "affiliations": {
+      "title": "Affiliations",
+      "description": "Explore the affiliations page of Thivi Edu, a culinary and hospitality education concept created as a web design portfolio project."
     }
   },
   "errors": {
