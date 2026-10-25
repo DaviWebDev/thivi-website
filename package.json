@@ -17,7 +17,7 @@
     "docker:stop-prod": "docker stop thivi-prod",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\"",
-    "lint": "eslint \"**/*.{ts,astro}\"",
+    "lint": "eslint --max-warnings=0 \"**/*.{js,mjs,cjs,ts,astro}\"",
     "prepare": "husky"
   },
   "dependencies": {
@@ -33,9 +33,10 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@typescript/native": "npm:typescript@^7",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "eslint": "^10.13.0",
     "eslint-plugin-astro": "^3.2.1",
+    "eslint-plugin-security": "^4.2.0",
     "globals": "^17.13.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",

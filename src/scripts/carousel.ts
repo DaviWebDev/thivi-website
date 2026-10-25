@@ -89,14 +89,19 @@ document
     const updateActiveDot = () => {
       if (pageTargets.length === 0) return;
 
-      const activeIndex = pageTargets.reduce(
-        (closestIndex, target, index) =>
-          Math.abs(target - track.scrollLeft) <
-          Math.abs(pageTargets[closestIndex] - track.scrollLeft)
-            ? index
-            : closestIndex,
-        0,
-      );
+      const firstTarget = pageTargets.at(0);
+      if (firstTarget === undefined) return;
+
+      let activeIndex = 0;
+      let closestDistance = Math.abs(firstTarget - track.scrollLeft);
+
+      pageTargets.forEach((target, index) => {
+        const distance = Math.abs(target - track.scrollLeft);
+        if (distance < closestDistance) {
+          activeIndex = index;
+          closestDistance = distance;
+        }
+      });
 
       dotButtons.forEach((dot, index) => {
         if (index === activeIndex) {
@@ -127,9 +132,12 @@ document
           const reduceMotion = window.matchMedia(
             "(prefers-reduced-motion: reduce)",
           ).matches;
+          const target = pageTargets.at(index);
+
+          if (target === undefined) return;
 
           track.scrollTo({
-            left: pageTargets[index],
+            left: target,
             behavior: reduceMotion ? "auto" : "smooth",
           });
         });
