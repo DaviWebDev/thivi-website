@@ -6,19 +6,40 @@ interface Props {
 const { label } = Astro.props;
 ---
 
-<section class="carousel" data-carousel aria-roledescription="carousel" aria-label={label}>
+<section
+  class="carousel"
+  data-carousel
+  aria-roledescription="carousel"
+  aria-label={label}
+>
   <div class="carousel__row">
-    <button type="button" class="carousel__btn" data-carousel-prev aria-label="Previous slide">
+    <button
+      type="button"
+      class="carousel__btn"
+      data-carousel-prev
+      aria-label="Previous slide"
+    >
       ‹
     </button>
     <div class="carousel__track" data-carousel-track tabindex="0">
       <slot />
     </div>
-    <button type="button" class="carousel__btn" data-carousel-next aria-label="Next slide">
+    <button
+      type="button"
+      class="carousel__btn"
+      data-carousel-next
+      aria-label="Next slide"
+    >
       ›
     </button>
   </div>
-  <div class="carousel__dots" data-carousel-dots role="group" aria-label="Carousel pages" hidden></div>
+  <div
+    class="carousel__dots"
+    data-carousel-dots
+    role="group"
+    aria-label="Carousel pages"
+    hidden
+  ></div>
 </section>
 
 <style>

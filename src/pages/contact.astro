@@ -1,0 +1,282 @@
+---
+/*Astro Components*/
+import { Picture } from "astro:assets";
+import { Icon } from "astro-icon/components";
+/*Components*/
+import Layout from "../layout/Layout.astro";
+/*Images*/
+import bgContactHero from "../assets/images/contact-hero.png";
+/*Data*/
+import siteMetaData from "../constants/siteMetaData.json";
+
+const MAP_EMBED_URL =
+  "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d26494.694033586537!2d151.1747259!3d-33.8938579!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b129838f39a743f%3A0x3017d681632a850!2sSydney%20NSW%2C%20Australia!5e0!3m2!1sen!2sbr!4v1793134955192!5m2!1sen!2sbr";
+const MAP_LINK_URL = "https://maps.app.goo.gl/sF5y3hsXSEEZkcC7A";
+---
+
+<Layout
+  seo={siteMetaData.pages.contact}
+  class="flex flex-col items-center gap-10 pt-10"
+>
+  <h1 class="relative w-full max-w-300 ps-3 clamp-[text,1.4rem,2.25rem] font-semibold before:absolute before:bottom-0 before:clamp-[w,4rem,6.5rem] before:h-1 before:bg-lime-green xl:ps-0">
+    Contact Us
+  </h1>
+  <section class="hero flex items-center w-full">
+    <div class="hero__bg">
+      <Picture
+        src={bgContactHero}
+        formats={["webp"]}
+        quality={80}
+        widths={[640, 960, 1280]}
+        sizes="100vw"
+        alt=""
+        priority
+        position="center"
+        class="size-full object-cover"
+      />
+    </div>
+    <div class="hero__content w-full max-w-300">
+      <div class="hero__item">
+        <div class="hero__item-label">
+          <Icon name="phone-icon" aria-label="Phone" />
+          <span>Phone</span>
+        </div>
+        <a href="tel:+1-2345-2345" class="hero__item-content">
+          +1-2345-2345
+        </a>
+      </div>
+      <div class="hero__item">
+        <div class="hero__item-label">
+          <Icon name="email-icon" aria-label="Email" />
+          <span>Email</span>
+        </div>
+        <a href="mailto:contact@thivi.com.au" class="hero__item-content">
+          contact@thivi.com.au
+        </a>
+      </div>
+      <div class="hero__item">
+        <div class="hero__item-label">
+          <Icon name="location-icon" aria-label="Location" />
+          <span>Location</span>
+        </div>
+        <span class="hero__item-content">Sydney, Australia</span>
+      </div>
+    </div>
+  </section>
+  <section class="flex justify-center w-full">
+    <div class="flex flex-col gap-15 max-w-300">
+      <div class="flex flex-col items-center">
+        <h2 class="clamp-[text,1.2rem,1.7rem] font-bold text-lime-green">
+          LEAVE US YOUR INFO
+        </h2>
+        <p class="text-gray/70">AND WE WILL GET BACK TO YOU.</p>
+      </div>
+      <form
+        class="flex flex-col gap-5 clamp-[w,18rem,30rem]"
+        data-js="form"
+        novalidate
+      >
+        <div class="flex flex-col">
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            autocomplete="name"
+            class="input capitalize"
+            data-js="name-input"
+            required
+            aria-describedby="name-alert"
+            aria-label="Your name"
+          />
+          <span id="name-alert" data-js="name-alert" role="alert"></span>
+        </div>
+        <div class="flex flex-col">
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            autocomplete="email"
+            class="input"
+            data-js="email-input"
+            required
+            aria-describedby="email-alert"
+            aria-label="Your email"
+          />
+          <span id="email-alert" data-js="email-alert" role="alert"></span>
+        </div>
+        <textarea
+          name="details"
+          placeholder="Details"
+          class="details"
+          aria-label="More about you"
+        ></textarea>
+        <div class="flex flex-col">
+          <button
+            type="submit"
+            class="w-full h-12 text-white bg-lime-green scale-100 transition-transform delay-10 ease-in-out hover:scale-101 active:scale-99"
+          >
+            Subscribe
+          </button>
+          <span data-js="form-message" role="status"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+  <div class="flex w-full flex-col justify-center">
+    <div
+      class="relative h-80 w-full"
+      data-map
+      data-src={MAP_EMBED_URL}
+      data-title="Map with the location of Thivi in Sydney, Australia"
+    >
+      <div class="absolute inset-0 flex flex-col items-center justify-center gap-4 px-4 text-center">
+        <p class="clamp-[text,1.4rem,1.8rem] text-lime-green">
+          View Thivi map?{" "}
+          <span class="block text-gray/75 text-sm">
+            This loads Google Maps.
+          </span>
+        </p>
+        <button
+          type="button"
+          data-map-load
+          class="clamp-[w,10rem,15rem] h-10 text-white bg-lime-green scale-100 transition-transform delay-10 ease-in-out hover:scale-101 active:scale-99"
+        >
+          Show map
+        </button>
+      </div>
+    </div>
+    <p role="status" class="text-center" data-map-status></p>
+    <div class="py-4 text-center" data-map-fallback hidden>
+      <a
+        href={MAP_LINK_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline"
+      >
+        Open in Google Maps
+      </a>
+    </div>
+    <noscript>
+      <p class="py-4 text-center">
+        <a
+          href={MAP_LINK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline"
+        >
+          Open in Google Maps
+        </a>
+      </p>
+    </noscript>
+  </div>
+</Layout>
+
+<style>
+  .hero {
+    --overlap: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    isolation: isolate;
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 75rem;
+    min-height: min(50svh, 25rem);
+    padding-inline: 1rem;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0 0 var(--overlap) 0;
+    z-index: -1;
+    overflow: clip;
+  }
+
+  .hero__bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(54, 78, 9, 0.75);
+  }
+
+  .hero__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+  }
+
+  .hero__item-label {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: clamp(1.2rem, 1rem + 2vw, 2rem);
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .hero__item-label :global(svg) {
+    font-size: 1.8rem;
+  }
+
+  .hero__item-content {
+    font-size: clamp(1rem, 1rem + 1vw, 1.3rem);
+  }
+
+  .input:focus,
+  .details:focus {
+    outline: 1px solid var(--color-lime-green);
+  }
+
+  .input,
+  .details {
+    background-color: rgba(115, 171, 58, 0.1);
+  }
+
+  .input,
+  .details {
+    padding: 0.75rem;
+  }
+
+  .details {
+    min-height: min(15svh, 10rem);
+  }
+
+  .error {
+    color: red;
+  }
+
+  .alert {
+    color: orange;
+  }
+
+  .success {
+    color: var(--color-lime-green);
+  }
+
+  @media (width >= 40rem) {
+    .hero__content {
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      min-height: min(30svh, 20rem);
+    }
+
+    .hero__item {
+      gap: 2rem;
+    }
+
+    .hero__item-label :global(svg) {
+      font-size: 2.5rem;
+    }
+  }
+</style>
+
+<script src="../scripts/contactPage.ts"></script>

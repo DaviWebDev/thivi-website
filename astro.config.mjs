@@ -16,6 +16,7 @@ export default defineConfig({
         "form-action 'self'",
         "img-src 'self' data:",
         "font-src 'self' data:",
+        "frame-src https://www.google.com",
       ],
       styleDirective: {
         resources: [{ resource: "'unsafe-inline'", kind: "attribute" }],
