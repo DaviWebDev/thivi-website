@@ -11,8 +11,9 @@ import { footerInfo, footerLinks } from "../../data/footer.ts";
           <Icon name="logo/logo-footer" />
         </a>
         <p class="max-w-140">
-          We have been recruiting from the Culinary Arts for the past 4 years and I must say it has been a real pleasure to have the
-          students on board.
+          We have been recruiting from the Culinary Arts for the past 4 years
+          and I must say it has been a real pleasure to have the students on
+          board.
         </p>
       </div>
       <div class="flex gap-15 md:gap-0 md:justify-around">
@@ -49,7 +50,10 @@ import { footerInfo, footerLinks } from "../../data/footer.ts";
                     {item.socialMedia.map((social) => (
                       <li>
                         <a href={social.href} aria-label={social.name}>
-                          <Icon name={social.icon} class="text-4xl transition-colors duration-300 ease-in-out hover:text-white" />
+                          <Icon
+                            name={social.icon}
+                            class="text-4xl transition-colors duration-300 ease-in-out hover:text-white"
+                          />
                         </a>
                       </li>
                     ))}

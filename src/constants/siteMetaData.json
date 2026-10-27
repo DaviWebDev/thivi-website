@@ -23,6 +23,10 @@
     "news": {
       "title": "News",
       "description": "Stay up to date with the latest news from Thivi Edu, including student opportunities, program updates, and industry partnerships."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with Thivi Edu to learn more about our hospitality programs, ask a question, or connect with our team."
     }
   },
   "errors": {
