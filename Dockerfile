@@ -1,6 +1,6 @@
 FROM node:26-alpine AS base
 WORKDIR /app
-RUN corepack enable
+RUN npm install --global --allow-scripts=pnpm pnpm@12.16.1
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 COPY . .
