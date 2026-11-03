@@ -36,7 +36,7 @@ export const heroCards = [
 
 export const coursesCards: CourseCard[] = [
   {
-    slug: "/cert-iv-in-leadership-&-management",
+    slug: "leadership-and-management",
     title: "Cert IV in Leadership & Management",
     excerpt:
       "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country ...",
@@ -44,7 +44,7 @@ export const coursesCards: CourseCard[] = [
     imageAlt: "Woman holding a mug",
   },
   {
-    slug: "/Cert-iv-in-digital-marketing-and-communication",
+    slug: "digital-marketing-and-communication",
     title: "Cert IV in Digital Marketing and Communication",
     excerpt:
       "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country ...",
@@ -52,7 +52,7 @@ export const coursesCards: CourseCard[] = [
     imageAlt: "Work setup",
   },
   {
-    slug: "/cert-iv=hospitality",
+    slug: "hospitality",
     title: "Cert IV Hospitality",
     excerpt:
       "Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country ...",

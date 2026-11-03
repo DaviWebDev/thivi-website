@@ -1,13 +1,16 @@
 interface InfoItem {
   icon: string;
   label: string;
-  href?: string;
+}
+
+interface ContactInfoItem extends InfoItem {
+  href: string;
 }
 
 interface InfoData {
   location: InfoItem;
-  email: InfoItem;
-  phone: InfoItem;
+  email: ContactInfoItem;
+  phone: ContactInfoItem;
 }
 
 interface Affiliations {

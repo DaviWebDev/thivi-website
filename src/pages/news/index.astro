@@ -26,7 +26,7 @@ const latestNews = [...news].sort((a, b) => b.date.localeCompare(a.date));
           <li>
             <Card
               className="max-w-120"
-              slug={slug}
+              slug={`/news/${slug}`}
               title={title}
               excerpt={excerpt}
               image={image}

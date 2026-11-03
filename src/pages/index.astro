@@ -144,7 +144,7 @@ const bgHero = await getImage({
           {coursesCards.map(({ slug, title, excerpt, image, imageAlt }) => (
             <Card
               className="carousel__card w-full"
-              slug={slug}
+              slug={`/programs/${slug}`}
               title={title}
               excerpt={excerpt}
               image={image}

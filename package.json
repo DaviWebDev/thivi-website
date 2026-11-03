@@ -18,6 +18,10 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\"",
     "lint": "eslint --max-warnings=0 \"**/*.{js,mjs,cjs,ts,astro}\"",
+    "PW:test-full": "pnpm exec playwright test && pnpm exec playwright show-report",
+    "PW:test-partial": "pnpm exec playwright test",
+    "PW:report": "pnpm exec playwright show-report",
+    "PW:ui": "pnpm exec playwright test --ui",
     "prepare": "husky"
   },
   "dependencies": {
@@ -33,6 +37,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
     "@typescript/native": "npm:typescript@^7.0.2",
     "eslint": "^10.13.0",
     "eslint-plugin-astro": "^3.2.1",
