@@ -26,7 +26,7 @@
 
 Projeto de portfólio que recria um layout do Figma como um site completo e funcional: **Home, About, Programs, Affiliations, News, Contact, Privacy Policy e 404**.
 
-O layout original veio de um template do Figma. O conteúdo foi reescrito do zero, e as marcas, os textos e os dados são fictícios.
+O layout é baseado no template [Institution Website Mockup](https://www.figma.com/community/file/1209831162617933089/institution-website-mockup), de [Saurav Acharya](https://www.figma.com/@sacharavya), publicado no Figma Community e licenciado sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Foram feitas alterações: versão mobile criada do zero, conteúdo reescrito e ajustes de estrutura e acessibilidade. As marcas, os textos e os dados são fictícios.
 
 **Objetivos**
 
