@@ -4,6 +4,7 @@ import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
+  markdown: { syntaxHighlight: false },
   build: {
     inlineStylesheets: "always",
   },
