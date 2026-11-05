@@ -11,6 +11,9 @@ interface Props {
   class?: string;
 }
 
+const canonicalPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const canonicalUrl = new URL(canonicalPath, Astro.site).href;
+
 const { seo, class: mainClass } = Astro.props;
 ---
 
@@ -52,6 +55,7 @@ const { seo, class: mainClass } = Astro.props;
     <SEO
       title={seo?.title ?? siteMetaData.default.title}
       description={seo?.description ?? siteMetaData.default.description}
+      canonical={canonicalUrl}
     />
     <slot name="preload" />
     <Font cssVariable="--poppins" preload />
