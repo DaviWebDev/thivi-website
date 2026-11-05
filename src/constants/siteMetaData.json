@@ -1,38 +1,42 @@
 {
   "default": {
-    "title": "Thivi",
-    "description": "Welcome to Thivi! Discover our story, explore our programs, and join our community."
+    "title": "Thivi Edu",
+    "description": "Explore Thivi Edu's programs in hospitality, culinary practice, team leadership, and digital communication."
   },
   "pages": {
     "home": {
-      "title": "Thivi",
-      "description": "Thivi Edu is a culinary and hospitality school. Discover our programs, meet our teachers and join a community built around hands-on cooking."
+      "title": "Thivi Edu",
+      "description": "Explore practical pathways in hospitality operations, team leadership, culinary service, and digital communication."
     },
     "about": {
       "title": "About",
-      "description": "Thivi Edu is a culinary and hospitality school with hands-on training, small classes and partnerships with restaurants and hotels."
+      "description": "Learn how Thivi Edu connects culinary practice, guest service, hospitality operations, and digital communication."
     },
     "programs": {
       "title": "Programs",
-      "description": "Explore Thivi Edu's practical programs in leadership and management, digital marketing, and hospitality. Build industry-ready skills through hands-on learning."
+      "description": "Explore Thivi Edu programs in hospitality operations, leadership and management, and digital marketing and communication."
     },
     "affiliations": {
       "title": "Affiliations",
-      "description": "Explore the affiliations page of Thivi Edu, a culinary and hospitality education concept created as a web design portfolio project."
+      "description": "View the education and hospitality affiliation listed by Thivi Edu."
     },
     "news": {
       "title": "News",
-      "description": "Stay up to date with the latest news from Thivi Edu, including student opportunities, program updates, and industry partnerships."
+      "description": "Read updates about Thivi Edu programs, student resources, workshops, and hospitality partnerships."
     },
     "contact": {
       "title": "Contact",
-      "description": "Get in touch with Thivi Edu to learn more about our hospitality programs, ask a question, or connect with our team."
+      "description": "Contact Thivi Edu with a question about hospitality programs, learning pathways, or the information on this site."
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "description": "Learn how this Thivi Edu portfolio demonstration handles contact form entries, the Google Maps preference, and third-party map loading."
     }
   },
   "errors": {
     "404": {
       "title": "Page not found",
-      "description": "The page you're looking for couldn't be found. Explore Thivi Edu's culinary and hospitality programs, or return to our homepage."
+      "description": "The page you're looking for couldn't be found. Explore Thivi Edu's hospitality programs or return to the homepage."
     }
   }
 }

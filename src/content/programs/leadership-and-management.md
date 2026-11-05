@@ -1,17 +1,17 @@
 ---
 title: "Cert IV in Leadership & Management"
-description: "Build the skills to lead a kitchen or a hospitality team. You will learn to plan work, manage budgets, give feedback and make decisions under pressure, with practical projects in real working environments."
+description: "Develop practical skills in team coordination, work planning, budgeting, and constructive feedback for hospitality workplaces."
 bg: ../../assets/images/kitchen.jpeg
 ---
 
 ## INTRODUCTION
 
-This program prepares you to step into supervisory and management roles in kitchens, hotels, restaurants and event companies. You will learn how to organize a team, plan daily operations, control costs and keep standards high when the service gets busy. Every module combines theory with practical projects, so you practice leadership in real working environments, not only in the classroom.
+Learn how to coordinate people and plan the work that keeps hospitality operations moving. Topics include communication, budgeting, performance feedback, and decision making, with projects based on the situations managers encounter in kitchens, hotels, restaurants, and event teams.
 
 ## ADMISSION PREREQUISITE:
 
 - High school completion with a minimum of 50% aggregated marks and English as a compulsory subject.
-- Shall come across from the Thivi entrance test and interview.
+- Applicants must pass the Thivi entrance test and interview.
 - Previous experience in hospitality is welcome, but not required.
 
 ## Course Outline and Subjects:

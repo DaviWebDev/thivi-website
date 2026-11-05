@@ -1,12 +1,15 @@
 ---
+import { getCollection } from "astro:content";
 /*Components*/
 import Layout from "../../layout/Layout.astro";
 import Card from "../../components/ui/Card.astro";
 /*Data*/
 import siteMetaData from "../../constants/siteMetaData.json";
-import { news } from "../../data/news.ts";
+/*Images*/
 
-const latestNews = [...news].sort((a, b) => b.date.localeCompare(a.date));
+const latestNews = (await getCollection("news")).sort(
+  (first, second) => second.data.date.getTime() - first.data.date.getTime(),
+);
 ---
 
 <Layout seo={siteMetaData.pages.news} class="flex justify-center">
@@ -22,15 +25,15 @@ const latestNews = [...news].sort((a, b) => b.date.localeCompare(a.date));
     </h1>
     <div>
       <ul class="grid-layout">
-        {latestNews.map(({ slug, title, excerpt, image, imageAlt }, index) => (
+        {latestNews.map(({ id, data }, index) => (
           <li>
             <Card
               className="max-w-120"
-              slug={`/news/${slug}`}
-              title={title}
-              excerpt={excerpt}
-              image={image}
-              imageAlt={imageAlt}
+              slug={`/news/${id}`}
+              title={data.title}
+              excerpt={data.excerpt}
+              image={data.image}
+              imageAlt={data.imageAlt}
               quality={index === 0 ? 80 : 70}
               priority={index === 0}
               btnContent="Read More"

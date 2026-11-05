@@ -1,0 +1,118 @@
+---
+import Layout from "../layout/Layout.astro";
+import siteMetaData from "../constants/siteMetaData.json";
+---
+
+<Layout seo={siteMetaData.pages.privacyPolicy} class="flex justify-center">
+  <article class="privacy-policy max-w-300 px-5 py-15">
+    <h1 class="relative mb-8 clamp-[text,1.4rem,2.25rem] font-semibold before:absolute before:bottom-0 before:clamp-[w,4rem,7rem] before:h-1 before:bg-lime-green">
+      Privacy Policy
+    </h1>
+    <p class="mb-8 text-gray/75">
+      Last updated: November 5, 2026. This page describes how this Thivi Edu
+      portfolio demonstration handles information when you browse the site.
+    </p>
+
+    <section>
+      <h2>Information you enter</h2>
+      <p>
+        The contact form on this demonstration site is not connected to a
+        server. When you submit it, the name and email fields are checked in
+        your browser, a demonstration message is shown, and the form is reset.
+        The information you enter is not sent to or stored by Thivi Edu through
+        this form. Please do not enter sensitive personal information.
+      </p>
+    </section>
+
+    <section>
+      <h2>Google Maps and your preference</h2>
+      <p>
+        The embedded Google Map is optional. It is not loaded unless you choose
+        “Allow Google Maps” and then select “Show map”. If you decline, the
+        embedded map is not loaded; you can still choose to open Google Maps
+        using the link on the Contact page.
+      </p>
+      <p>
+        Your choice is saved in this browser’s local storage under the key
+        <code>thivi-google-maps-consent</code>, with a value of
+        <code>accepted</code> or <code>rejected</code>. This is browser storage,
+        not a cookie, and the choice is not sent to our site’s server. It stays
+        in your browser until you change the map preference on the Contact page
+        or clear this site’s browser data. If browser storage is unavailable,
+        your choice may not persist after you leave the page.
+      </p>
+      <p>
+        If you allow and load the map, your browser connects to Google. Google
+        may receive technical information such as your IP address and browser
+        details, and may use cookies or similar technologies according to its
+        own policies. Declining prevents the embedded map from loading, but
+        following the external Google Maps link will take you to Google and is
+        subject to Google’s policies.
+      </p>
+      <p class="flex gap-1">
+        For more information, see
+        <a
+          href="https://policies.google.com/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline underline-offset-4"
+        >
+          Google’s Privacy Policy
+        </a>
+        .
+      </p>
+    </section>
+
+    <section>
+      <h2>Cookies and analytics</h2>
+      <p>
+        This demonstration does not intentionally use analytics or advertising
+        cookies. The map preference is stored in local storage as described
+        above. Google Maps, if loaded, is a third-party service and may use its
+        own cookies or similar technologies.
+      </p>
+    </section>
+
+    <section>
+      <h2>Changes and questions</h2>
+      <p class="flex gap-1">
+        This notice may be updated if the site’s features change. If you have a
+        question about this demonstration, contact us at
+        <a
+          href="mailto:contact@thivi.com.au"
+          class="underline underline-offset-4"
+        >
+          contact@thivi.com.au
+        </a>
+        .
+      </p>
+    </section>
+
+    <p class="mt-8 text-sm text-gray/75">
+      This page describes the current behavior of a portfolio demonstration and
+      is not legal advice. A live service should review this notice against its
+      actual data practices and applicable requirements.
+    </p>
+  </article>
+</Layout>
+
+<style>
+  .privacy-policy > :global(section) {
+    margin-bottom: 2rem;
+  }
+
+  .privacy-policy > :global(section h2) {
+    margin-bottom: 0.75rem;
+    color: var(--color-dark-olive-green);
+    font-size: clamp(1.2rem, 1.5vw + 0.9rem, 1.5rem);
+    font-weight: 600;
+  }
+
+  .privacy-policy > :global(section p:not(:last-child)) {
+    margin-bottom: 1rem;
+  }
+
+  code {
+    padding-inline-start: 5px;
+  }
+</style>

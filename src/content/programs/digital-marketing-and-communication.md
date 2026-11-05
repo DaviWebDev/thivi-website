@@ -1,17 +1,17 @@
 ---
 title: "Cert IV in Digital Marketing and Communication"
-description: "Learn to promote hospitality brands online. From social media and content creation to email campaigns and basic analytics, you will build a portfolio of real campaigns for restaurants, hotels and events."
+description: "Plan hospitality campaigns, create content for digital channels, and use basic analytics to understand what resonates with guests."
 bg: ../../assets/images/laptop-cafe.png
 ---
 
 ## INTRODUCTION
 
-This program teaches you how to attract guests and build a strong brand for restaurants, hotels and event businesses using digital tools. You will plan campaigns, create content for social media, write clear messages for different audiences and measure the results with simple analytics. By the end, you will have a portfolio of practical projects that you can show to employers.
+Explore how hospitality businesses communicate online. You will work with social content, email, brand storytelling, and campaign measurement, then bring those skills together in a final campaign project.
 
 ## ADMISSION PREREQUISITE:
 
 - High school completion with a minimum of 50% aggregated marks and English as a compulsory subject.
-- Shall come across from the Thivi entrance test and interview.
+- Applicants must pass the Thivi entrance test and interview.
 - Basic computer skills and interest in communication and design.
 
 ## Course Outline and Subjects:

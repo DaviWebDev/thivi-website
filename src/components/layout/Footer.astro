@@ -11,9 +11,8 @@ import { footerInfo, footerLinks } from "../../data/footer.ts";
           <Icon name="logo/logo-footer" />
         </a>
         <p class="max-w-140">
-          We have been recruiting from the Culinary Arts for the past 4 years
-          and I must say it has been a real pleasure to have the students on
-          board.
+          Explore pathways in hospitality, culinary service, team leadership,
+          and digital communication.
         </p>
       </div>
       <div class="flex gap-15 md:gap-0 md:justify-around">
@@ -45,20 +44,7 @@ import { footerInfo, footerLinks } from "../../data/footer.ts";
             <div class="flex items-center gap-3">
               <dt class="font-bold text-white">{item.title}:</dt>
               <dd>
-                {item.type === "social" ? (
-                  <ul class="flex">
-                    {item.socialMedia.map((social) => (
-                      <li>
-                        <a href={social.href} aria-label={social.name}>
-                          <Icon
-                            name={social.icon}
-                            class="text-4xl transition-colors duration-300 ease-in-out hover:text-white"
-                          />
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                ) : item.type === "link" ? (
+                {item.type === "link" ? (
                   <a href={item.href}>{item.value}</a>
                 ) : (
                   item.value
@@ -69,7 +55,7 @@ import { footerInfo, footerLinks } from "../../data/footer.ts";
         </dl>
       </address>
     </div>
-    <small>© Thivi, Edu. 2019. We love our users!</small>
+    <small>© {new Date().getFullYear()} Thivi Edu.</small>
   </div>
 </footer>
 

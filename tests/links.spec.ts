@@ -128,14 +128,113 @@ test.describe("Contact", () => {
     await expect(page).toHaveTitle(/Contact/);
   });
 
-  test("test phone and email links", async ({ page }) => {
+  test("email link uses the published contact address", async ({ page }) => {
     const item = page.locator(".hero__item");
 
     await expect(
-      item.getByRole("link", { name: "+1-2345-2345" }),
-    ).toHaveAttribute("href", "tel:+1-2345-2345");
-    await expect(
       item.getByRole("link", { name: "contact@thivi.com.au" }),
     ).toHaveAttribute("href", "mailto:contact@thivi.com.au");
+  });
+
+  test("requires a choice before showing the embedded map", async ({
+    page,
+  }) => {
+    await expect(
+      page.getByRole("button", { name: "Allow Google Maps" }),
+    ).toBeVisible();
+    await expect(page.getByRole("button", { name: "Show map" })).toBeHidden();
+    await expect(page.locator("[data-map-frame] iframe")).toHaveCount(0);
+  });
+
+  test("rejection shows the alternative and persists after reload", async ({
+    page,
+  }) => {
+    await page.getByRole("button", { name: "Decline" }).click();
+
+    await expect(page.locator("[data-map-consent]")).toBeHidden();
+    await expect(page.locator("[data-map-fallback]")).toContainText(
+      "You chose not to load the embedded Google Map.",
+    );
+    await expect(page.getByRole("button", { name: "Show map" })).toBeHidden();
+    await expect
+      .poll(() =>
+        page.evaluate(() => localStorage.getItem("thivi-google-maps-consent")),
+      )
+      .toBe("rejected");
+
+    await page.reload();
+
+    await expect(page.locator("[data-map-consent]")).toBeHidden();
+    await expect(page.locator("[data-map-fallback]")).toContainText(
+      "You chose not to load the embedded Google Map.",
+    );
+    await expect(page.getByRole("button", { name: "Show map" })).toBeHidden();
+  });
+
+  test("acceptance reveals the map button without loading until clicked", async ({
+    page,
+  }) => {
+    await page.getByRole("button", { name: "Allow Google Maps" }).click();
+
+    const showMapButton = page.getByRole("button", { name: "Show map" });
+    await expect(showMapButton).toBeVisible();
+    await expect(page.locator("[data-map-consent]")).toBeVisible();
+    await expect(page.locator("[data-map-consent-options]")).toBeHidden();
+    await expect(page.locator("[data-map-frame] iframe")).toHaveCount(0);
+    await expect
+      .poll(() =>
+        page.evaluate(() => localStorage.getItem("thivi-google-maps-consent")),
+      )
+      .toBe("accepted");
+
+    await page.route("https://www.google.com/maps/embed**", (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "text/html",
+        body: "<!doctype html><title>Map test</title>",
+      }),
+    );
+    await showMapButton.click();
+
+    await expect(page.locator("[data-map-frame] iframe")).toHaveAttribute(
+      "src",
+      /^https:\/\/www\.google\.com\/maps\/embed/,
+    );
+  });
+
+  test("changing the choice removes the saved preference", async ({ page }) => {
+    await page.getByRole("button", { name: "Allow Google Maps" }).click();
+    await page.getByRole("button", { name: "Change map preference" }).click();
+
+    await expect(
+      page.getByRole("button", { name: "Allow Google Maps" }),
+    ).toBeVisible();
+    await expect(page.getByRole("button", { name: "Show map" })).toBeHidden();
+    await expect
+      .poll(() =>
+        page.evaluate(() => localStorage.getItem("thivi-google-maps-consent")),
+      )
+      .toBeNull();
+  });
+});
+
+test.describe("Privacy policy", () => {
+  test("explains the map preference and demo form behavior", async ({
+    page,
+  }) => {
+    await page.goto("/privacy-policy");
+
+    await expect(
+      page.getByRole("heading", { name: "Privacy Policy", level: 1 }),
+    ).toBeVisible();
+    await expect(page.getByText("thivi-google-maps-consent")).toBeVisible();
+    await expect(
+      page.getByText(
+        "The contact form on this demonstration site is not connected to a server.",
+      ),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "Google’s Privacy Policy" }),
+    ).toHaveAttribute("href", "https://policies.google.com/privacy");
   });
 });

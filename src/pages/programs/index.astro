@@ -1,12 +1,15 @@
 ---
+import { getCollection } from "astro:content";
 /*Astro Components*/
 import { Image } from "astro:assets";
 /*Components*/
 import Layout from "../../layout/Layout.astro";
 /*data*/
 import siteMetaData from "../../constants/siteMetaData.json";
-import { coursesData } from "../../data/courses.ts";
+import { getCourseVisual, orderPrograms } from "../../data/courses.ts";
 import ButtonLink from "../../components/ui/ButtonLink.astro";
+
+const programs = orderPrograms(await getCollection("programs"));
 ---
 
 <Layout seo={siteMetaData.pages.programs} class="flex justify-center">
@@ -15,8 +18,10 @@ import ButtonLink from "../../components/ui/ButtonLink.astro";
       Programs at Thivi
     </h1>
     <ul class="flex flex-col gap-10 lg:gap-0">
-      {coursesData.map(
-        ({ slug, title, description, image, imageAlt }, index) => (
+      {programs.map((program, index) => {
+        const visual = getCourseVisual(program.id);
+
+        return (
           <li>
             <article
               class:list={[
@@ -26,8 +31,8 @@ import ButtonLink from "../../components/ui/ButtonLink.astro";
             >
               <div class="relative after:absolute after:inset-0 after:bg-lime-green/52 md:flex-1">
                 <Image
-                  src={image}
-                  alt={imageAlt}
+                  src={visual.image}
+                  alt={visual.imageAlt}
                   priority={index === 0}
                   quality={index === 0 ? 80 : 70}
                 />
@@ -35,20 +40,20 @@ import ButtonLink from "../../components/ui/ButtonLink.astro";
               <div class="md:flex-1">
                 <div class="flex flex-col gap-5 lg:px-15">
                   <h2 class="text-2xl font-semibold text-dark-olive-green">
-                    {title}
+                    {program.data.title}
                   </h2>
-                  <p>{description}</p>
+                  <p>{program.data.description}</p>
                   <ButtonLink
                     content="Learn More"
-                    href={`/programs/${slug}`}
-                    ariaLabel={title}
+                    href={`/programs/${program.id}`}
+                    ariaLabel={program.data.title}
                   />
                 </div>
               </div>
             </article>
           </li>
-        ),
-      )}
+        );
+      })}
     </ul>
   </section>
 </Layout>

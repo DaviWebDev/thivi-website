@@ -6,7 +6,7 @@ test.describe("Contact form", () => {
   });
 
   test("shows messages when required fields are empty", async ({ page }) => {
-    await page.getByRole("button", { name: "Subscribe" }).click();
+    await page.getByRole("button", { name: "Send message" }).click();
 
     await expect(page.locator('[data-js="name-alert"]')).toHaveText(
       "A name must be entered",
@@ -36,10 +36,10 @@ test.describe("Contact form", () => {
 
     await nameInput.fill("Davi Silva");
     await emailInput.fill("davi@example.com");
-    await page.getByRole("button", { name: "Subscribe" }).click();
+    await page.getByRole("button", { name: "Send message" }).click();
 
     await expect(page.locator('[data-js="form-message"]')).toContainText(
-      "Subscription completed successfully",
+      "This demo form does not send messages yet.",
     );
     await expect(nameInput).toBeEmpty();
     await expect(emailInput).toBeEmpty();

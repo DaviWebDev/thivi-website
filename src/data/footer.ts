@@ -1,10 +1,10 @@
 export const footerLinks = [
   {
-    title: "Community",
+    title: "Explore",
     links: [
-      { label: "Featured artists", href: "/featured-artists" },
-      { label: "The Portal", href: "/the-portal" },
-      { label: "Live events", href: "/live-events" },
+      { label: "Programs", href: "/programs" },
+      { label: "Affiliations", href: "/affiliations" },
+      { label: "News", href: "/news" },
     ],
   },
   {
@@ -12,27 +12,17 @@ export const footerLinks = [
     links: [
       { label: "About us", href: "/about" },
       { label: "Contact us", href: "/contact" },
-      { label: "History", href: "/history" },
+      { label: "Privacy policy", href: "/privacy-policy" },
     ],
   },
 ] as const;
 
 export const footerInfo = [
   {
-    title: "Follow us",
-    type: "social",
-    socialMedia: [
-      { name: "Twitter", icon: "social/twitter", href: "/twitter" },
-      { name: "Facebook", icon: "social/facebook", href: "/facebook" },
-      { name: "Instagram", icon: "social/instagram", href: "/instagram" },
-      { name: "LinkedIn", icon: "social/linkedin", href: "/linkedin" },
-    ],
-  },
-  {
-    title: "Contact",
+    title: "Email",
     type: "link",
-    value: "9860879045",
-    href: "tel:9860879045",
+    value: "contact@thivi.com.au",
+    href: "mailto:contact@thivi.com.au",
   },
-  { title: "Address", type: "text", value: "Chyasundol - 06, Golfutar" },
+  { title: "Location", type: "text", value: "Sydney, Australia" },
 ] as const;

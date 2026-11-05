@@ -1,18 +1,18 @@
 ---
 title: "Cert IV in Hospitality"
-description: "A complete introduction to the hospitality industry, from guest service and event setup to operations and teamwork, preparing you for your first job in restaurants, hotels and event companies."
+description: "Build a foundation in guest service, front-office and food-and-beverage operations, event support, and workplace communication."
 bg: ../../assets/images/hotel-lobby.jpg
 ---
 
 ## INTRODUCTION
 
-This program is a complete introduction to the hospitality industry. You will learn how hotels, restaurants and event companies work behind the scenes, from welcoming guests at the front desk to serving at the table and setting up a full event. Classes combine theory with hands-on practice, so you build confidence in real service situations. It is the ideal first step for anyone who wants a career in hotels, restaurants, cafes, catering businesses or international cruise ships.
+Explore the day-to-day work behind welcoming guests, serving food and beverages, and preparing events. The program introduces the service, operations, and communication skills used across hotels, restaurants, cafes, and catering.
 
 ## ADMISSION PREREQUISITE:
 
 - High school completion with a minimum of 50% aggregated marks and English as a compulsory subject.
-- Shall come across from the Thivi entrance test and interview.
-- Should be willing to study hard at all times.
+- Applicants must pass the Thivi entrance test and interview.
+- Applicants should be prepared for consistent study and practical work.
 
 ## Course Outline and Subjects:
 

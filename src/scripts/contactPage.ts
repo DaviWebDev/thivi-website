@@ -122,7 +122,7 @@ frm?.addEventListener("submit", (e) => {
   if (isNameValid && isEmailValid) {
     setMessage(
       formMessage,
-      "Subscription completed successfully (Test only; no data was actually sent)",
+      "Thanks for your message. This demo form does not send messages yet.",
       "success",
     );
     frm.reset();
@@ -134,7 +134,9 @@ frm?.addEventListener("submit", (e) => {
   }
 });
 
+const MAP_CONSENT_KEY = "thivi-google-maps-consent";
 const LOAD_TIMEOUT_MS = 10_000;
+type MapConsent = "accepted" | "rejected" | null;
 
 const getEmbedUrl = (value: string) => {
   try {
@@ -149,51 +151,139 @@ const getEmbedUrl = (value: string) => {
 };
 
 document.querySelectorAll<HTMLElement>("[data-map]").forEach((box) => {
+  const consentPanel = box.querySelector<HTMLElement>("[data-map-consent]");
+  const consentOptions = box.querySelector<HTMLElement>(
+    "[data-map-consent-options]",
+  );
+  const acceptButton =
+    box.querySelector<HTMLButtonElement>("[data-map-accept]");
+  const rejectButton =
+    box.querySelector<HTMLButtonElement>("[data-map-reject]");
   const button = box.querySelector<HTMLButtonElement>("[data-map-load]");
+  const frame = box.querySelector<HTMLElement>("[data-map-frame]");
   const status =
     box.parentElement?.querySelector<HTMLElement>("[data-map-status]");
   const fallback = box.parentElement?.querySelector<HTMLElement>(
     "[data-map-fallback]",
   );
+  const fallbackMessage = box.parentElement?.querySelector<HTMLElement>(
+    "[data-map-fallback-message]",
+  );
+  const changeConsentButton =
+    box.parentElement?.querySelector<HTMLButtonElement>(
+      "[data-map-change-consent]",
+    );
   const embedUrl = getEmbedUrl(box.dataset.src ?? "");
 
   if (!embedUrl) {
     console.error("Map: invalid data-src", box.dataset.src);
     return;
   }
-  if (!button) return;
+  if (
+    !consentPanel ||
+    !consentOptions ||
+    !acceptButton ||
+    !rejectButton ||
+    !button ||
+    !frame ||
+    !status ||
+    !fallback ||
+    !fallbackMessage ||
+    !changeConsentButton
+  ) {
+    console.error("Map: consent controls are missing.");
+    return;
+  }
 
-  button.addEventListener(
-    "click",
-    () => {
-      const iframe = document.createElement("iframe");
-      iframe.src = embedUrl;
-      iframe.title = box.dataset.title ?? "Map";
-      iframe.referrerPolicy = "no-referrer-when-downgrade";
-      iframe.className = "size-full border-0";
+  const showStorageError = () => {
+    status.textContent =
+      "Your map preference could not be saved in this browser. It will only apply until you leave this page.";
+  };
 
-      if (fallback) fallback.hidden = true;
+  const getStoredConsent = (): MapConsent => {
+    try {
+      const savedChoice = window.localStorage.getItem(MAP_CONSENT_KEY);
+      return savedChoice === "accepted" || savedChoice === "rejected"
+        ? savedChoice
+        : null;
+    } catch (error) {
+      console.error("Map consent: could not read browser storage.", error);
+      status.textContent =
+        "Your saved map preference could not be read. Please choose whether to allow the map.";
+      return null;
+    }
+  };
 
-      const timer = window.setTimeout(() => {
-        if (status)
-          status.textContent =
-            "The map is taking too long to load. You can open it in Google Maps instead.";
-        if (fallback) fallback.hidden = false;
-      }, LOAD_TIMEOUT_MS);
+  const renderConsent = (choice: MapConsent) => {
+    consentPanel.hidden = choice === "rejected";
+    consentOptions.hidden = choice !== null;
+    button.hidden = choice !== "accepted";
+    changeConsentButton.hidden = choice === null;
+    fallback.hidden = choice !== "rejected";
+    frame.replaceChildren();
+    frame.classList.add("hidden");
 
-      iframe.addEventListener(
-        "load",
-        () => {
-          window.clearTimeout(timer);
-          if (status) status.textContent = "";
-          if (fallback) fallback.hidden = true;
-        },
-        { once: true },
-      );
+    if (choice === "rejected") {
+      fallbackMessage.textContent =
+        "You chose not to load the embedded Google Map. You can still open the location directly in Google Maps.";
+    }
+  };
 
-      box.replaceChildren(iframe);
-      iframe.focus();
-    },
-    { once: true },
-  );
+  const saveConsent = (choice: Exclude<MapConsent, null>) => {
+    try {
+      window.localStorage.setItem(MAP_CONSENT_KEY, choice);
+    } catch (error) {
+      console.error("Map consent: could not save browser preference.", error);
+      showStorageError();
+    }
+
+    renderConsent(choice);
+  };
+
+  renderConsent(getStoredConsent());
+
+  acceptButton.addEventListener("click", () => saveConsent("accepted"));
+  rejectButton.addEventListener("click", () => saveConsent("rejected"));
+
+  changeConsentButton.addEventListener("click", () => {
+    try {
+      window.localStorage.removeItem(MAP_CONSENT_KEY);
+    } catch (error) {
+      console.error("Map consent: could not clear browser preference.", error);
+      showStorageError();
+    }
+
+    renderConsent(null);
+  });
+
+  button.addEventListener("click", () => {
+    const iframe = document.createElement("iframe");
+    iframe.src = embedUrl;
+    iframe.title = box.dataset.title ?? "Map";
+    iframe.referrerPolicy = "no-referrer-when-downgrade";
+    iframe.className = "size-full border-0";
+
+    button.hidden = true;
+    fallback.hidden = true;
+    frame.classList.remove("hidden");
+
+    const timer = window.setTimeout(() => {
+      status.textContent =
+        "The map is taking too long to load. You can open it in Google Maps instead.";
+      fallbackMessage.textContent = "";
+      fallback.hidden = false;
+    }, LOAD_TIMEOUT_MS);
+
+    iframe.addEventListener(
+      "load",
+      () => {
+        window.clearTimeout(timer);
+        status.textContent = "";
+        fallback.hidden = true;
+      },
+      { once: true },
+    );
+
+    frame.replaceChildren(iframe);
+  });
 });

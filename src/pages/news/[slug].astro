@@ -1,0 +1,92 @@
+---
+/*Type*/
+import type { GetStaticPaths } from "astro";
+import type { CollectionEntry } from "astro:content";
+/*Astro Components*/
+import { getCollection, render } from "astro:content";
+import { Picture } from "astro:assets";
+import { Icon } from "astro-icon/components";
+/*Components*/
+import Layout from "../../layout/Layout.astro";
+/*Lib*/
+import { formatDate } from "../../lib/utils.ts";
+
+type NewsEntry = CollectionEntry<"news">;
+
+interface Props {
+  newsItem: NewsEntry;
+}
+
+export const getStaticPaths = (async () => {
+  const newsEntries = await getCollection("news");
+
+  return newsEntries.map((newsItem) => ({
+    params: { slug: newsItem.id },
+    props: { newsItem },
+  }));
+}) satisfies GetStaticPaths;
+
+const { newsItem } = Astro.props;
+const { Content } = await render(newsItem);
+---
+
+<Layout
+  seo={{
+    title: `${newsItem.data.title} | Thivi`,
+    description: newsItem.data.excerpt,
+  }}
+  class="flex justify-center"
+>
+  <article class="flex w-full max-w-300 flex-col px-5 py-10 xl:px-0">
+    <h1 class="clamp-[text,1.4rem,2.25rem] font-semibold text-dark-olive-green">
+      {newsItem.data.title}
+    </h1>
+    <time datetime={newsItem.data.date.toISOString()} class="my-2 text-gray/75">
+      {formatDate(newsItem.data.date)}
+    </time>
+    <div class="mb-10">
+      <Picture
+        src={newsItem.data.image}
+        formats={["webp"]}
+        quality={80}
+        widths={[640, 960, 1280]}
+        sizes="100vw"
+        alt={newsItem.data.imageAlt}
+        priority
+        class="max-h-100 w-full object-cover"
+      />
+    </div>
+
+    <Content />
+    <a
+      href="/news"
+      class="btn-back flex justify-center items-center gap-2 w-50 h-12 text-white bg-lime-green"
+    >
+      <Icon name="arrow-left" />
+      Back to news
+    </a>
+  </article>
+</Layout>
+
+<style>
+  article > :global(p) {
+    font-size: clamp(1rem, 1.5vw + 0.8rem, 1.3rem);
+  }
+
+  article > :global(p:not(:last-child)) {
+    margin-bottom: 2rem;
+  }
+
+  .btn-back {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
+
+  .btn-back:hover {
+    transform: scale(1.1);
+  }
+
+  .btn-back:active {
+    transform: scale(0.95);
+  }
+</style>

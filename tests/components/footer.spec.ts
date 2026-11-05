@@ -7,7 +7,7 @@ test.describe("Footer", () => {
 
   test("displays the copyright", async ({ page }) => {
     const footer = page.getByRole("contentinfo");
-    await expect(footer).toContainText(/©\s*Thivi, Edu\.\s+\d{4}/);
+    await expect(footer).toContainText(/©\s*\d{4}\s+Thivi Edu\./);
   });
 
   test("navigation links lead to corresponding pages", async ({ page }) => {
@@ -21,16 +21,17 @@ test.describe("Footer", () => {
     await expect(
       companyNav.getByRole("link", { name: "Contact us" }),
     ).toHaveAttribute("href", "/contact");
+    await expect(
+      companyNav.getByRole("link", { name: "Privacy policy" }),
+    ).toHaveAttribute("href", "/privacy-policy");
   });
 
-  test("displays accessible social links", async ({ page }) => {
+  test("does not display unconfigured social links", async ({ page }) => {
     const footer = page.getByRole("contentinfo");
-    const socialNames = ["Twitter", "Facebook", "Instagram", "LinkedIn"];
-
-    for (const name of socialNames) {
-      const link = footer.getByRole("link", { name });
-      await expect(link).toBeVisible();
-      await expect(link).toHaveAttribute("href", /.+/);
-    }
+    await expect(
+      footer.getByRole("link", {
+        name: /^(Twitter|Facebook|Instagram|LinkedIn)$/,
+      }),
+    ).toHaveCount(0);
   });
 });
