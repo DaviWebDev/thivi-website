@@ -16,6 +16,8 @@
   <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
   <img alt="Playwright" src="https://img.shields.io/badge/Playwright-2EAD33?style=flat-square&logo=playwright&logoColor=white" />
   <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
+  <img alt="ESLint" src="https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=eslint&logoColor=white" />
+  <img alt="Prettier" src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=prettier&logoColor=black" />
 </p>
 
 ---
@@ -36,7 +38,7 @@ O layout original veio de um template do Figma. O conteúdo foi reescrito do zer
 ## 🧰 Stack
 
 <p>
-  <img alt="Stack" src="https://skillicons.dev/icons?i=astro,ts,tailwind,html,css,js,figma,vercel,docker,nginx,githubactions,playwright,eslint,prettier,pnpm&perline=15" />
+  <img alt="Stack" src="https://skillicons.dev/icons?i=astro,ts,tailwind,html,css,js,figma,vercel,docker,nginx,githubactions,pnpm&perline=12" />
 </p>
 
 | Área          | Tecnologias                                                              |
